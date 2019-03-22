@@ -1,18 +1,19 @@
 package DataStructure;
+import DataStructure.Node;
+
+
 
 public class ExampleNode implements Node{
 	
-	public int value;
-	public ExampleNode next = null;
+	private int value;
+	public  ExampleNode next = null;
 	
 	
-	/**
-	 * 
-	 * @param value
-	 */
+	
+
 	public ExampleNode(int value) 
 	{
-		this.value = value;
+		this.setValue(value);
 	}
 	
 	@Override
@@ -30,26 +31,34 @@ public class ExampleNode implements Node{
 	@Override
 	public Node clone() 
 	{
-		return new ExampleNode(this.value);
+		return new ExampleNode(this.getValue());
 	}
 
 	@Override
 	public boolean isEqual(Node node) 
 	{
 		ExampleNode temp = (ExampleNode)node;
-		return this.value == temp.value ? true : false;
+		return this.getValue() == temp.getValue() ? true : false;
 	}
 
 	@Override
 	public boolean isLessThan(Node node) 
 	{
 		ExampleNode temp = (ExampleNode)node;
-		return this.value < temp.value ? true : false;
+		return this.getValue() < temp.getValue() ? true : false;
 	}
 	
 	@Override
 	public String toString()
 	{
-		return this.value + ",";
+		return this.getValue() + ",";
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
 	}
 }

@@ -5,18 +5,9 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 public class List {
-	public static Node head = null;
+	public  Node head = null;
 
 	public List() {
-	}
-
-	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		List lista = new List();
-		/*
-		 * head.valor=4; lista.insertAtBegin(head);
-		 * 
-		 */
 	}
 
 	/**
@@ -58,14 +49,15 @@ public class List {
 	 * 
 	 * @param newNode
 	 */
+	
 	public void insertAtEnd(Node newNode) {
 		Node temp = head;
-		while (Node.next != null) {
-			temp = Node.next;
+		Node aux =temp;
 
+		while (aux.next != null) {
+			aux=aux.getNext();
 		}
-		temp.getNext();
-		temp = newNode;
+		aux.setNext(temp);
 
 	}
 
