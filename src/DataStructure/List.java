@@ -73,17 +73,17 @@ public class List {
 	// Method to insert element in position required
 	public void insertAtIndex(Node newNode, int index) {
 		Node temp = head;
-		Node before= null;
-		Node toInsert=newNode;
-		
-		for (int i = 0; i < index - 1; i++) {
+		Node before = temp;
+		Node toInsert = newNode;
 
-			before = temp.getNext();
+		for (int i = 0; i < index; i++) {
+
+			before = temp;
 			temp = temp.getNext();
-			}
-		
-		before.setNext(toInsert.next);
-		toInsert.setNext(temp);
+		}
+
+		toInsert.setNext(before.next);
+		before.setNext(newNode);
 		System.gc();
 
 	}
@@ -104,13 +104,13 @@ public class List {
 	// Method to delete element in end position
 	public void deleteAtEnd() {
 		Node temp = head;
-		Node toDelete;
-		while (Node.next != null) {
-			temp = Node.next;
+		Node before = temp;
+		while (temp.getNext() != null) {
+			before = temp;
+			temp = temp.getNext();
 		}
-		toDelete = temp.getNext();
-		temp.setNext(toDelete.getNext());
-		toDelete = null;
+		temp = null;
+		before.setNext(null);
 		System.gc();
 	}
 
@@ -220,8 +220,23 @@ public class List {
 	 * @param node
 	 * @return
 	 */
-	public Node binarySearch(Node node) {
-		return null;
+	public int binarySearch(Node node) {
+		int lower_boud = 0, upper_bound = this.length() - 1;
+		int middle = 0, index = -1;
+
+		while (upper_bound > lower_boud) {
+			middle = (lower_boud + upper_bound / 2);
+
+			if (get(middle).isEqual(node)) {
+				index = middle;
+				break;
+			} else if (get(middle).isLessThan(node))
+				lower_boud = middle + 1;
+			else
+				upper_bound = middle - 1;
+
+		}
+		return index;
 	}
 
 	/**
@@ -299,6 +314,19 @@ public class List {
 	public List sublist(int begin, int end) {
 		List subList = new List();
 
+		if (begin < this.length() && end < this.length() && begin < end) {
+			Node temp = head;
+
+			for (int i = 0; i < begin; i++)
+				temp = temp.getNext();
+
+			// while(!temp.equals(get(end)))
+			for (int i = 0; i < (end - begin); i++) {
+				subList.insertAtEnd(temp.clone());
+				temp = temp.getNext();
+			}
+		}
+
 		return subList;
 	}
 
@@ -307,7 +335,13 @@ public class List {
 	 * @return
 	 */
 	public int length() {
-		return -1;
+		int cont = 0;
+		Node rec = head;
+		while (rec.next != null) {
+			rec = rec.getNext();
+			cont++;
+		}
+		return cont;
 	}
 
 	/**
@@ -315,7 +349,14 @@ public class List {
 	 * @return
 	 */
 	public List cloneList() {
-		return null;
+		Node rec = head;
+		List newList = new List();
+
+		while (rec.next != null) {
+			newList.insertAtEnd(rec.clone());
+			rec = rec.getNext();
+		}
+		return newList;
 	}
 
 	/**
@@ -346,7 +387,17 @@ public class List {
 	 * @return
 	 */
 	public Node get(int index) {
-		return null;
+		Node result = null;
+
+		if (index < this.length()) {
+			Node rec = head;
+			for (int i = 0; i < index; i++)
+				rec = rec.getNext();
+
+			result = rec.clone();
+		}
+		return result;
+
 	}
 
 	/**
