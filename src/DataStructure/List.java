@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 public class List {
-	public  Node head = null;
+	public Node head = null;
 
 	public List() {
 	}
@@ -49,15 +49,19 @@ public class List {
 	 * 
 	 * @param newNode
 	 */
-	
+	// Method to insert node in position final
 	public void insertAtEnd(Node newNode) {
-		Node temp = head;
-		Node aux =temp;
+		Node temp = newNode;
+		if (head == null) {
+			head = newNode;
+		} else {
+			Node aux = head;
 
-		while (aux.next != null) {
-			aux=aux.getNext();
+			while (aux.next != null) {
+				aux = aux.next;
+			}
+			aux.setNext(newNode);
 		}
-		aux.setNext(temp);
 
 	}
 
@@ -69,13 +73,17 @@ public class List {
 	// Method to insert element in position required
 	public void insertAtIndex(Node newNode, int index) {
 		Node temp = head;
-		Node toInsert;
-		Node vtx = newNode;
+		Node before= null;
+		Node toInsert=newNode;
+		
+		for (int i = 0; i < index - 1; i++) {
 
-		for (int i = 0; i < index - 1; i++)
+			before = temp.getNext();
 			temp = temp.getNext();
-		toInsert = temp.getNext();
-		temp.setNext(toInsert.getNext());
+			}
+		
+		before.setNext(toInsert.next);
+		toInsert.setNext(temp);
 		System.gc();
 
 	}
