@@ -1,9 +1,12 @@
 package Parcial;
+import DataStructure.Node;
+import LinearDS_Problems.ThrowingCardsAway.ProblemNode;
 
 public class Mochilero {
-
-	int[] hospedaje = new int[10];
-	String[] ciudades = { "Medellin", "Cali", "Bucaramanga", "Barranquilla" };
+	
+	
+	
+	
 
 	public static void main(String[] args) {
 	
@@ -23,6 +26,7 @@ public class Mochilero {
 
 	}
 
+	/*
 	// Method to calculate between ten hotel values
 	public int menorValor() {
 		int menortarifa;
@@ -35,7 +39,7 @@ public class Mochilero {
 
 		return menortarifa;
 	}
-
+*/
 	// Method to calculate value of travel
 	public static int valueToTravel(int tarifa, boolean vac) {
 		int presupuesto = 0;
