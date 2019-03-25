@@ -7,9 +7,8 @@ public class CitiesNode implements Node{
 	public CitiesNode nextCity = null;
 	
 	//builder of class CitiesNode
-	public CitiesNode(String ciudad) 
-	{
-		this.ciudades = ciudad;
+	public CitiesNode(String ciudad){
+		this.setCiudades(ciudad);
 	}
 	
 
@@ -25,7 +24,7 @@ public class CitiesNode implements Node{
 
 	@Override
 	public Node clone() {
-		CitiesNode temp = new CitiesNode(this.ciudades);
+		CitiesNode temp = new CitiesNode(this.getCiudades());
 		return temp;
 	}
 
@@ -48,5 +47,6 @@ public class CitiesNode implements Node{
 	public void setCiudades(String ciudades) {
 		this.ciudades = ciudades;
 	}
-	
+
+
 }
