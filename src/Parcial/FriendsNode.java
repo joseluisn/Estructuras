@@ -7,7 +7,7 @@ public class FriendsNode implements Node {
 	public FriendsNode nextFriend = null;
 	
 	//builder of class FriendsNode
-		public FriendsNode(String name){
+		public FriendsNode(String name){ 
 			this.setName(name);
 		}
 

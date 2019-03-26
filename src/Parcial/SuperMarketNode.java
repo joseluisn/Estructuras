@@ -1,46 +1,48 @@
 package Parcial;
+
 import DataStructure.Node;
 
 public class SuperMarketNode implements Node {
 	private String name;
 	public int price;
 	public SuperMarketNode Products = null;
-	
-	//build of class SuperMarketNode
-	
+
+	// build of class SuperMarketNode
+	public SuperMarketNode(String name, int price) {
+		this.name = name;
+		this.price = price;
+	}
+
 	public static void main(String[] args) {
-		
 
 	}
 
 	@Override
 	public void setNext(Node node) {
-		// TODO Auto-generated method stub
-		
+		this.Products = (SuperMarketNode) node;
 	}
 
 	@Override
 	public Node getNext() {
-		// TODO Auto-generated method stub
-		return null;
+		return Products;
 	}
 
 	@Override
 	public Node clone() {
-		// TODO Auto-generated method stub
-		return null;
+	SuperMarketNode temp = new SuperMarketNode(this.name, this.price);
+			return temp;
 	}
 
 	@Override
 	public boolean isEqual(Node node) {
-		// TODO Auto-generated method stub
-		return false;
+		SuperMarketNode temp = (SuperMarketNode)node;
+		return this.price == temp.price ? true : false;
 	}
 
 	@Override
 	public boolean isLessThan(Node node) {
-		// TODO Auto-generated method stub
-		return false;
+		SuperMarketNode temp = (SuperMarketNode)node;
+		return this.price < temp.price ? true : false;
 	}
 
 	private String getName() {
@@ -50,6 +52,5 @@ public class SuperMarketNode implements Node {
 	private void setName(String name) {
 		this.name = name;
 	}
-
 
 }
