@@ -4,10 +4,8 @@ import DataStructure.ExampleNode;
 import DataStructure.Node;
 
 public class BinaryTree {
-	
-	public BinaryTreeNode root = null; //
 
-	
+	public BinaryTreeNode root = null; //
 
 	/**
 	 * 
@@ -68,7 +66,15 @@ public class BinaryTree {
 	 * @param value
 	 */
 	public void delete(BinaryTreeNode nodeToDelete) {
-
+	 //create variable of type BinaryTreeNode for find the nodeToDelete
+		BinaryTreeNode res= search(nodeToDelete);
+		BinaryTree temp;
+		if(res.isEqual(nodeToDelete)&& isLeaf(nodeToDelete)==true) {
+		   nodeToDelete=null; 
+	   }else if(res.isEqual(nodeToDelete)&& oneChild(nodeToDelete)==true) {
+		   temp=(BinaryTree) nodeToDelete;
+	   
+	   }
 	}
 
 	/**
@@ -133,8 +139,8 @@ public class BinaryTree {
 		BinaryNodeExample node3 = new BinaryNodeExample(5);
 		BinaryNodeExample node4 = new BinaryNodeExample(12);
 		BinaryNodeExample node5 = new BinaryNodeExample(18);
-		BinaryTree bin=new BinaryTree();
-		
+		BinaryTree bin = new BinaryTree();
+
 		bin.insert(node1);
 		bin.insert(node2);
 		bin.insert(node3);
