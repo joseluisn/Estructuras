@@ -1,5 +1,8 @@
 package Graph;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 import DataStructure.List;
 import DataStructure.Node;
 import DataStructure.Stack;
@@ -10,11 +13,15 @@ public class GraphNode implements Node {
 	Node next;
 	List nodes = new List();
 	List edges = new List();
-	boolean visited;
+	boolean visited = false;
 
 	public GraphNode(int Data, int label) {
 		this.Data = Data;
 		this.label = label;
+	}
+
+	public GraphNode() {
+		
 	}
 
 	public void insert_node() {
@@ -60,10 +67,12 @@ public class GraphNode implements Node {
 	public List getNodes() {
 		return nodes;
 	}
+
 	public void setNodes(List node) {
 		this.nodes = node;
 	}
-	
+
+	// this method implement with dfs
 	public void articulationPoints(Node node) {
 		Stack stack = new Stack();
 		GraphNode node1 = new GraphNode(Data, label);
@@ -72,17 +81,37 @@ public class GraphNode implements Node {
 		node1.visited = true;
 		while (!stack.isEmpty()) {
 			Node element = stack.pop();
-			
+			// we create list of neighbours
 			List neighbours = new List();
 			neighbours = (List) element.getNext();
 			for (int i = 0; i < neighbours.length(); i++) {
 				Node n = neighbours.get(i);
 				if (n != null && !Node.visited) {
 					stack.push(n);
-				    visited = true;
-
+					visited = true;
 				}
 			}
+		}
+	}
+
+	public static void main(String[] args) {
+
+		GraphNode graph = new GraphNode();
+		try {
+			FileReader fr = new FileReader("joseluis.txt");
+			BufferedReader br = new BufferedReader(fr);
+			
+			String line =br.readLine();
+			String[] record=null;
+			while(line != null) {
+				record = line.split(" ");
+				graph.insert_edge(Integer.parseInt(record[0]),Integer.parseInt(record[1]));
+				line =br.readLine();
+				br.close();
+			}			
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 
