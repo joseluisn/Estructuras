@@ -3,6 +3,7 @@ package DataStructure;
 public interface Node {
 
 	Node next = null; //Pointer
+	boolean visited = false;
 	
 	/**
 	 * 
